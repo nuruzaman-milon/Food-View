@@ -50,9 +50,9 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "transition-colors hover:text-foreground/80",
+                "transition-colors hover:text-primary/80",
                 pathname === item.href
-                  ? "text-foreground"
+                  ? "text-primary font-semibold"
                   : "text-foreground/60"
               )}
             >
