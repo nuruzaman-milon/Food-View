@@ -1,14 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Moon, Sun, User, Utensils, Menu } from "lucide-react" // Added PlusCircle
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Moon, Sun, User, Utensils, Menu } from "lucide-react"; // Added PlusCircle
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -17,16 +28,16 @@ const navItems = [
   { href: "/restaurants", label: "Restaurants" },
   { href: "/contact", label: "Contact" },
   { href: "/add-review", label: "Add Review" }, // New nav item
-]
+];
 
 export function Navbar() {
-  const pathname = usePathname()
-  const { setTheme } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+  const pathname = usePathname();
+  const { setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:bg-muted/30">
-      <div className="container flex h-16 items-center px-4">
+      <div className="container flex h-16 items-center mx-auto px-4">
         <Link href="/" className="flex items-center space-x-2">
           <Utensils className="h-6 w-6" />
           <span className="font-bold text-xl">FoodieHub</span>
@@ -40,7 +51,9 @@ export function Navbar() {
               href={item.href}
               className={cn(
                 "transition-colors hover:text-foreground/80",
-                pathname === item.href ? "text-foreground" : "text-foreground/60",
+                pathname === item.href
+                  ? "text-foreground"
+                  : "text-foreground/60"
               )}
             >
               {item.label}
@@ -59,14 +72,24 @@ export function Navbar() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
           {/* Login Button - Hidden on mobile */}
-          <Button asChild variant="outline" className="hidden sm:flex bg-transparent">
+          <Button
+            asChild
+            variant="outline"
+            className="hidden sm:flex bg-transparent"
+          >
             <Link href="/login">
               <User className="h-4 w-4 mr-2" />
               Login
@@ -76,7 +99,11 @@ export function Navbar() {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden bg-transparent">
+              <Button
+                variant="outline"
+                size="icon"
+                className="md:hidden bg-transparent"
+              >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
@@ -96,13 +123,19 @@ export function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={cn(
                       "text-lg font-medium transition-colors hover:text-foreground/80 py-2",
-                      pathname === item.href ? "text-foreground" : "text-foreground/60",
+                      pathname === item.href
+                        ? "text-foreground"
+                        : "text-foreground/60"
                     )}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <Button asChild variant="outline" className="mt-4 justify-start bg-transparent">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mt-4 justify-start bg-transparent"
+                >
                   <Link href="/login" onClick={() => setIsOpen(false)}>
                     <User className="h-4 w-4 mr-2" />
                     Login
@@ -114,5 +147,5 @@ export function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }
