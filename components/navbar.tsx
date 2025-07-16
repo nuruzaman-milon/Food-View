@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Moon, Sun, User, Utensils, Menu } from "lucide-react"
+import { Moon, Sun, User, Utensils, Menu } from "lucide-react" // Added PlusCircle
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -16,6 +16,7 @@ const navItems = [
   { href: "/food", label: "Food" },
   { href: "/restaurants", label: "Restaurants" },
   { href: "/contact", label: "Contact" },
+  { href: "/add-review", label: "Add Review" }, // New nav item
 ]
 
 export function Navbar() {
